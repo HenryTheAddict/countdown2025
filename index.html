@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown to 2025</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ececec, #f5f5f5);
+            font-family: 'Arial', sans-serif;
+        }
+        .countdown {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .countdown h1 {
+            font-size: 2em;
+            margin: 0;
+            color: #333;
+        }
+        .countdown p {
+            font-size: 4em;
+            margin: 0;
+            color: #111;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown">
+        <h1>Countdown to 2025</h1>
+        <p id="timer">00:00</p>
+    </div>
 
+    <script>
+        function updateTimer() {
+            const targetDate = new Date('January 1, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('timer').textContent = 
+                ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2);
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById('timer').textContent = "EXPIRED";
+            }
+        }
+
+        updateTimer();
+        const x = setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
